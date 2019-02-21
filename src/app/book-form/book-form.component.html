@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="addBookForm" novalidate>
+<form #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)" [formGroup]="addBookForm" novalidate>
   <mat-card class="book-card">
     <mat-card-header>
       <mat-card-title>Book Information</mat-card-title>
