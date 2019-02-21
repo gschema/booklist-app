@@ -1,11 +1,12 @@
+import Book from './book';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BooksService {
-  books = [
-    {
+export class BookService {
+  private books: BehaviorSubject<Book[]> = new BehaviorSubject([{
       category: 'Drama',
       description: 'Drama book description',
       title: 'Drama book',
@@ -20,11 +21,14 @@ export class BooksService {
       description: 'Comedy book description',
       title: 'Comedy book',
     }
-  ]
+  ]);
 
-  constructor() { }
+  addBook(book: Book) {
+    this.books.next([...this.books.value, book]);
+  }
 
   getBooks() {
     return this.books;
   }
+
 }

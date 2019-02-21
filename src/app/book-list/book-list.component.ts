@@ -1,41 +1,43 @@
-import { BooksService } from '../books.service';
+import Book from '../book';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { BookService } from '../book.service';
 import { Component, OnInit } from '@angular/core';
-
-export interface Book {
-  title: string;
-  category: string;
-  description: string;
-}
+import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.css']
 })
-export class BookListComponent {
+export class BookListComponent implements OnInit {
   tableColumns: string[] = ['title', 'category', 'description'];
 
-  books: Book[] = [
-    {
-      category: 'Drama',
-      description: 'Drama book description',
-      title: 'Drama book',
-    },
-    {
-      category: 'Sport',
-      description: 'Sport book description',
-      title: 'Sport book',
-    },
-    {
-      category: 'Comedy',
-      description: 'Comedy book description',
-      title: 'Comedy book',
-    }
-  ];
+  books: BooksDataSource;
 
-  constructor(private booksService: BooksService) {}
+  constructor(private booksService: BookService) {}
+
+  ngOnInit() {
+    this.getBooks();
+  }
 
   getBooks(): void {
-    this.books = this.booksService.getBooks();
+    const books = this.booksService.getBooks();
+
+    this.books = new BooksDataSource(books);
   }
+}
+
+export class BooksDataSource extends DataSource<Book> {
+  books: Observable<Book[]>;
+
+  constructor (books: Observable<Book[]>) {
+    super();
+    this.books = books;
+  }
+
+  connect(): Observable<Book[]> {
+    return this.books;
+  }
+
+  disconnect() {}
 }

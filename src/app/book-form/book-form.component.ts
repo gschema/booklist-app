@@ -1,4 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import Book from '../book';
+import { BookService } from '../book.service';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 const maxLength = 30;
@@ -23,11 +25,11 @@ export class BookFormComponent {
     {name: 'Sport'},
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private booksService: BookService) {}
 
   onSubmit() {
     if (this.addBookForm.valid) {
-      console.log(this.addBookForm.value);
+      this.booksService.addBook(this.addBookForm.value as Book);
     }
   }
 }

@@ -3,7 +3,7 @@
     <mat-card-title>Book List ({{books.length}})</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <table mat-table [dataSource]="books">
+    <table mat-table [dataSource]="books" [trackBy]="title">
         <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef>Title</th>
           <td mat-cell *matCellDef="let element"> {{element.title}} </td>
