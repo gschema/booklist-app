@@ -6,22 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BookService {
-  private books: BehaviorSubject<Book[]> = new BehaviorSubject([{
-      category: 'Drama',
-      description: 'Drama book description',
-      title: 'Drama book',
-    },
-    {
-      category: 'Sport',
-      description: 'Sport book description',
-      title: 'Sport book',
-    },
-    {
-      category: 'Comedy',
-      description: 'Comedy book description',
-      title: 'Comedy book',
-    }
-  ]);
+  private books: BehaviorSubject<Book[]> = new BehaviorSubject([]);
 
   addBook(book: Book) {
     this.books.next([...this.books.value, book]);
