@@ -9,13 +9,13 @@ const maxLength = 30;
     styleUrls: ['./book-form.component.css']
 })
 export class BookFormComponent {
+  maxLength = maxLength;
+
   addBookForm = this.fb.group({
     title: [null, Validators.compose([Validators.required, Validators.maxLength(maxLength)])],
     category: [null, Validators.required],
     description: [null, Validators.required],
   });
-
-  maxLength = maxLength;
 
   categories = [
     {name: 'Drama'},
@@ -26,6 +26,8 @@ export class BookFormComponent {
   constructor(private fb: FormBuilder) {}
 
   onSubmit() {
-    alert('Thanks!');
+    if (this.addBookForm.valid) {
+      console.log(this.addBookForm.value);
+    }
   }
 }
