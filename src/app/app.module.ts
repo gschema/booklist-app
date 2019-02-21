@@ -8,7 +8,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MatSnackBarModule } from '@angular/material';
 import { NgModule } from '@angular/core';
+
 import {
   MatButtonModule,
   MatCardModule,
@@ -51,6 +53,7 @@ import {
     MatRadioModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

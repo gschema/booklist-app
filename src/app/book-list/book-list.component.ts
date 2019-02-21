@@ -2,6 +2,7 @@ import Book from '../book';
 import { BookService } from '../book.service';
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
+import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,7 +16,7 @@ export class BookListComponent implements OnInit {
   books: BooksDataSource;
   booksCount: number;
 
-  constructor(private booksService: BookService) {}
+  constructor(private booksService: BookService, private infoBar: MatSnackBar) {}
 
   ngOnInit() {
     this.getBooks();
@@ -23,9 +24,21 @@ export class BookListComponent implements OnInit {
 
   getBooks(): void {
     const books = this.booksService.getBooks();
-    books.subscribe(booksUpdate => this.booksCount = booksUpdate.length);
+    books.subscribe(booksUpdate => {
+      this.booksCount = booksUpdate.length;
+      this.showInfo(`New book added.`);
+    });
 
     this.books = new BooksDataSource(books);
+  }
+
+  showInfo(message: string) {
+    // if already initialised
+    if (this.booksCount) {
+      this.infoBar.open(message, undefined, {
+        duration: 2000,
+      });
+    }
   }
 }
 
