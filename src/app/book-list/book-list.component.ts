@@ -13,6 +13,7 @@ export class BookListComponent implements OnInit {
   tableColumns: string[] = ['title', 'category', 'description'];
 
   books: BooksDataSource;
+  booksCount: number;
 
   constructor(private booksService: BookService) {}
 
@@ -22,6 +23,7 @@ export class BookListComponent implements OnInit {
 
   getBooks(): void {
     const books = this.booksService.getBooks();
+    books.subscribe(booksUpdate => this.booksCount = booksUpdate.length);
 
     this.books = new BooksDataSource(books);
   }
