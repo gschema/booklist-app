@@ -1,8 +1,8 @@
 import Book from '../book';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { BookService } from '../book.service';
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-book-list',

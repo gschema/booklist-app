@@ -25,3 +25,15 @@
 .col:last-child {
   margin-right: 0;
 }
+
+.book-action .row {
+  padding-right: 16px;
+  padding-left: 16px;
+  padding-bottom: 16px;
+}
+
+.mat-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
