@@ -1,3 +1,4 @@
+import { BooksService } from '../books.service';
 import { Component, OnInit } from '@angular/core';
 
 export interface Book {
@@ -12,7 +13,7 @@ export interface Book {
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent {
-  displayedColumns: string[] = ['title', 'category', 'description'];
+  tableColumns: string[] = ['title', 'category', 'description'];
 
   books: Book[] = [
     {
@@ -31,4 +32,10 @@ export class BookListComponent {
       title: 'Comedy book',
     }
   ];
+
+  constructor(private booksService: BooksService) {}
+
+  getBooks(): void {
+    this.books = this.booksService.getBooks();
+  }
 }
