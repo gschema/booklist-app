@@ -1,0 +1,41 @@
+<form [formGroup]="addBookForm" novalidate>
+  <mat-card class="book-card">
+    <mat-card-header>
+      <mat-card-title>Book Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="addBookForm.controls['title'].hasError('required')">
+              Title is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="addBookForm.controls['title'].hasError('maxlength')">
+              Title too long. Max length is <strong>{{maxLength}}</strong> characters.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Category" formControlName="category">
+              <mat-option *ngFor="let category of categories" [value]="category.name">
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addBookForm.controls['category'].hasError('required')">
+              Category is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Description" formControlName="description"></textarea>
+            <mat-error *ngIf="addBookForm.controls['description'].hasError('required')">
+              Description is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
