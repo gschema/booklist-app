@@ -14,15 +14,8 @@ import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
   MatCardModule,
-  MatGridListModule,
-  MatIconModule,
   MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatRadioModule,
   MatSelectModule,
-  MatSidenavModule,
-  MatToolbarModule,
   MatTableModule,
   } from '@angular/material';
 
