@@ -5,6 +5,21 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 
+export class BooksDataSource extends DataSource<Book> {
+  books: Observable<Book[]>;
+
+  constructor(books: Observable<Book[]>) {
+    super();
+    this.books = books;
+  }
+
+  connect(): Observable<Book[]> {
+    return this.books;
+  }
+
+  disconnect() {}
+}
+
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
@@ -40,19 +55,4 @@ export class BookListComponent implements OnInit {
       });
     }
   }
-}
-
-export class BooksDataSource extends DataSource<Book> {
-  books: Observable<Book[]>;
-
-  constructor (books: Observable<Book[]>) {
-    super();
-    this.books = books;
-  }
-
-  connect(): Observable<Book[]> {
-    return this.books;
-  }
-
-  disconnect() {}
 }
