@@ -1,15 +1,20 @@
+import appModuleDependencies from '../app.module.dependencies';
 import { BookFormComponent } from './book-form.component';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 
-
-
-xdescribe('BookFormComponent', () => {
+describe('BookFormComponent', () => {
   let component: BookFormComponent;
   let fixture: ComponentFixture<BookFormComponent>;
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookFormComponent ]
+      imports: [
+        ...appModuleDependencies.imports,
+      ],
+      declarations: [
+        ...appModuleDependencies.declarations,
+      ],
+      providers: [...appModuleDependencies.providers],
     })
     .compileComponents();
 

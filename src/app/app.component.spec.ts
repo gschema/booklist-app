@@ -9,7 +9,6 @@ import { BookListPageComponent } from './book-list-page/book-list-page.component
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      schemas: [...appModuleDependencies.schemas],
       imports: [
         ...appModuleDependencies.imports,
       ],

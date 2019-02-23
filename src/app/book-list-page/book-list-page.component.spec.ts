@@ -1,14 +1,20 @@
+import appModuleDependencies from '../app.module.dependencies';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BookListPageComponent } from './book-list-page.component';
 
-
-xdescribe('BookListPageComponent', () => {
+describe('BookListPageComponent', () => {
   let component: BookListPageComponent;
   let fixture: ComponentFixture<BookListPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookListPageComponent ]
+      imports: [
+        ...appModuleDependencies.imports,
+      ],
+      declarations: [
+        ...appModuleDependencies.declarations,
+      ],
+      providers: [...appModuleDependencies.providers],
     })
     .compileComponents();
   }));
