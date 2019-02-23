@@ -26,11 +26,11 @@ describe('Booklist App', () => {
     expect(bookListRows.count()).toEqual(1);
   });
 
-  it('should add book to book list on form submition', async () => {
+  it('should add book to book list on form submission', async () => {
     await page.populateBookForm({
       title: 'Liverpool Football Club',
       description: `John Williams explores the origins and divisive politics of soccer in the city of Liverpool...`,
-      category: 'sport'
+      category: 'Sport'
     });
 
     await page.submitForm();
@@ -39,17 +39,28 @@ describe('Booklist App', () => {
     expect(bookListRows.count()).toEqual(2);
   });
 
-  xit('should add book to book list on form submition', async () => {
-    await page.populateBookForm({
+  it('should display correct book info in book list on form submission', async () => {
+    const bookFixture = {
       title: 'Liverpool Football Club',
       description: `John Williams explores the origins and divisive politics of soccer in the city of Liverpool...`,
-      category: 'sport'
-    });
+      category: 'Sport'
+    };
+    await page.populateBookForm(bookFixture);
 
     await page.submitForm();
     const bookListRows = page.getBookListTableRows();
 
+    function  getCellText(name: string) {
+      return newBookTableRow.element(by.css(`.${name}`)).getText();
+    }
+
     const newBookTableRow = bookListRows.last();
-    expect(newBookTableRow.element(by.binding('element.description'))).toEqual('Liverpool Football Club');
+    const title = getCellText('title');
+    const category = getCellText('category');
+    const description = getCellText('description');
+
+    expect(title).toEqual(bookFixture.title);
+    expect(category).toEqual(bookFixture.category);
+    expect(description).toEqual(bookFixture.description);
   });
 });
