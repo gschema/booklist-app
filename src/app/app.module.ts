@@ -3,7 +3,6 @@ import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 
 @NgModule({
-  schemas: [...appModuleDependencies.schemas],
   declarations: [
     ...appModuleDependencies.declarations,
   ],
