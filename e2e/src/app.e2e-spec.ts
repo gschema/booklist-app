@@ -50,11 +50,12 @@ describe('Booklist App', () => {
     await page.submitForm();
     const bookListRows = page.getBookListTableRows();
 
+    const newBookTableRow = bookListRows.last();
+
     function  getCellText(name: string) {
       return newBookTableRow.element(by.css(`.${name}`)).getText();
     }
 
-    const newBookTableRow = bookListRows.last();
     const title = getCellText('title');
     const category = getCellText('category');
     const description = getCellText('description');
