@@ -5,10 +5,18 @@ describe('Booklist App', () => {
 
   beforeEach(() => {
     page = new AppPage();
+    page.navigateTo();
   });
 
   it('should display app title', () => {
-    page.navigateTo();
     expect(page.getParagraphText()).toEqual('Booklist App');
+  });
+
+  it('should display add book form', () => {
+    expect(page.getBookForm().isDisplayed()).toEqual(true);
+  });
+
+  it('should display add book list', () => {
+    expect(page.getBooklist().isDisplayed()).toEqual(true);
   });
 });
